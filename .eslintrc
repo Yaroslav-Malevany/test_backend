@@ -1,0 +1,15 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "standard"
+  ],
+  "rules": {
+    "semi": [2, "always"],
+    "no-mixed-spaces-and-tabs": off,
+    "no-tabs": off
+  },
+  "env": {
+    "jest": true,
+    "jasmine": true
+  }
+}
