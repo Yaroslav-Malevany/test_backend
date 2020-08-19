@@ -12,10 +12,10 @@ const { name, email, picture, role } = schema.tree;
  * @api {post} /users Create user
  * @apiName CreateUser
  * @apiGroup User
- * @apiParam name User's name.
- * @apiParam email User's email.
- * @apiParam picture User's picture.
- * @apiParam role User's role.
+ * @apiParam {String} name *User's name .
+ * @apiParam {String} email *User's email. This field should be unique.
+ * @apiParam {String} picture User's picture.
+ * @apiParam {String} role User's role.
  * @apiSuccess {Object} user User's data.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 User not found.
@@ -29,11 +29,43 @@ router.post('/',
  * @apiName RetrieveUsers
  * @apiGroup User
  * @apiUse listParams
+ * @apiParam {String} name User's name filter.
+ * @apiParam {Date} startDate User's creation date filter.
+ * @apiParam {Date} endDate User's creation date filter.
+ * @apiParam {String} email User's email filter.
+ * @apiParam {String[]} role User's role filter.
+ * @apiParam {Date} endDate User's creation date filter.
  * @apiSuccess {Object[]} users List of users.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
 router.get('/',
-  query(),
+  query({
+    name: {
+      type: String,
+      paths: ['name'],
+      operator: '$eq'
+    },
+    startDate: {
+      type: Date,
+      paths: ['createdAt'],
+      operator: '$gte'
+    },
+    endDate: {
+      type: Date,
+      paths: ['createdAt'],
+      operator: '$lte'
+    },
+    email: {
+      type: String,
+      paths: ['email'],
+      operator: '$eq'
+    },
+    role: {
+      type: [String],
+      paths: ['role'],
+      operator: '$in'
+    }
+  }),
   index);
 
 /**

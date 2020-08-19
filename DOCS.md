@@ -26,10 +26,10 @@ POST /users
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
-| name |  | <p>User's name.</p> |
-| email |  | <p>User's email.</p> |
-| picture |  | <p>User's picture.</p> |
-| role |  | <p>User's role.</p> |
+| name | `String` | <p>*User's name .</p> |
+| email | `String` | <p>*User's email. This field should be unique.</p> |
+| picture | `String` | <p>User's picture.</p> |
+| role | `String` | <p>User's role.</p> |
 
 ### Success response
 
@@ -106,6 +106,11 @@ GET /users
 
 | Name     | Type       | Description                           |
 |----------|------------|---------------------------------------|
+| name | `String` | <p>User's name filter.</p> |
+| startDate | `Date` | <p>User's creation date filter.</p> |
+| endDate | `Date` | <p>User's creation date filter.</p> |
+| email | `String` | <p>User's email filter.</p> |
+| role | `String[]` | <p>User's role filter.</p> |
 | q | `String` | **optional** <p>Query to search.</p> |
 | page | `Number` | **optional** <p>Page number.</p>_Default value: 1_<br>_Size range: 1..30_<br> |
 | limit | `Number` | **optional** <p>Amount of returned items.</p>_Default value: 30_<br>_Size range: 1..100_<br> |
